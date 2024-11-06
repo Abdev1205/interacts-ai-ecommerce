@@ -70,13 +70,15 @@ export default function LoginPage() {
               userType={userType}
             />
           </div>
-          <button
-            onClick={submitData}
-            className="flex justify-center items-center gap-[.3rem] bg-primary text-white w-[10rem] px-[.5rem] py-[.5rem] rounded-md mt-[6rem]"
-          >
-            <SignUpButton forceRedirectUrl={`/dashboard?role=${role}`} />
-            <MdKeyboardDoubleArrowRight className="text-[1.3rem]" />
-          </button>
+          <SignUpButton forceRedirectUrl={`/dashboard?role=${role}`} >
+            <button
+              onClick={submitData}
+              className="flex justify-center items-center gap-[.3rem] bg-primary text-white w-[10rem] px-[.5rem] py-[.5rem] rounded-md mt-[6rem]"
+            >
+              Login
+              <MdKeyboardDoubleArrowRight className="text-[1.3rem]" />
+            </button>
+          </SignUpButton>
         </div>
       </>
     );
