@@ -61,6 +61,12 @@ User authentication and role management are powered by **Clerk**.
 
 ## Demo
 
+### Live Website
+
+[https://interacts-ai-ecommerce.vercel.app/](https://interacts-ai-ecommerce.vercel.app/)
+
+## Screenshot 
+
 ### Home Page 
 ![image](https://github.com/user-attachments/assets/6cffa8b5-abfc-45bd-9fc6-d3cbf2f95c33)
 
