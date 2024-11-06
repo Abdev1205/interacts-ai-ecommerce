@@ -1,19 +1,22 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useRouter } from 'next/navigation';
+import React from 'react'
 import { IoCartOutline } from "react-icons/io5";
-
+import { useSelector } from 'react-redux';
 
 const CartIcon = () => {
-  const [CartItem, setCartItem] = useState(3)
+  const totalCount = useSelector((state) => state.cart.totalCount); // directly use totalCount from Redux
+  const router = useRouter();
+
   return (
-    <div className='relative '>
-      <div className='absolute bg-red-500 right-[-.5rem] top-[-.1rem]  text-white size-[1rem] flex items-center justify-center text-[.64rem] rounded-full ' >
-        {CartItem}
+    <div className='relative cursor-pointer' onClick={() => router.push('/cart')}>
+      <div className='absolute bg-red-500 right-[-.5rem] top-[-.1rem] text-white size-[1rem] flex items-center justify-center text-[.64rem] rounded-full'>
+        {totalCount}
       </div>
-      <IoCartOutline className=' text-[1.5rem] ' />
+      <IoCartOutline className='text-[1.5rem]' />
     </div>
-  )
+  );
 }
 
-export default CartIcon
+export default CartIcon;

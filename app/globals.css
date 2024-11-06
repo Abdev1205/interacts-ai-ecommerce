@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.embla {
+  /* max-width: 48rem; */
+  margin: auto;
+  --slide-height: 79rem;
+  --slide-spacing: 0rem;
+  --slide-size: 100%;
+}
+
+.embla__viewport {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+
+.embla__slide {
+  transform: translate3d(0, 0, 0);
+  flex: 0 0 var(--slide-size);
+  padding-left: var(--slide-spacing);
+}
+
+
+.user-selected {
+  background: #df4421;
+  box-shadow: 0px 0px 65px 2px #ff856c67;
+}
+
+.dark-user-selected {
+  background: #c84726;
+  box-shadow: 0px 0px 65px 2px #ffa06c51;
+}
+
+.user-elipse-gradient {
+  background-color: rgb(255, 193, 189);
+  filter: drop-shadow(0px 0px 49px rgba(255, 195, 183, 0.979));
+}
+
+.dark-user-elipse-gradient {
+  background-color: rgba(255, 142, 108, 0.39);
+  filter: drop-shadow(0px 0px 49px rgba(255, 155, 108, 0.32));
+}

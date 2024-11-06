@@ -13,7 +13,7 @@ module.exports = {
         poppins: ["var(--font-poppins)"],
       },
       colors: {
-        primary: "#003366",
+        primary: "#DB4444",
         heading: "#161C2D",
         heading_Blue_BG: "#E0E0E0",
         subheading: "#4D4D4D",

@@ -7,7 +7,6 @@ const AdminLayout = ({ children }) => {
     <div>
       <TopPromo />
       <Navbar />
-      <h2>Apnu Admin hai re </h2>
       {children}
     </div>
   )
