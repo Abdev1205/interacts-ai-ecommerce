@@ -4,9 +4,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart, decrease, getCartTotal } from '@/lib/redux/slices/cartSlice';
 import Image from 'next/image';
-import { FaCross } from 'react-icons/fa6';
 import { MdCancel } from "react-icons/md";
+import { loadStripe } from '@stripe/stripe-js';
 
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK);
 
 const CartPage = () => {
   const dispatch = useDispatch();
@@ -29,11 +30,29 @@ const CartPage = () => {
     dispatch(removeFromCart(id));
   };
 
+  const handleCheckout = async () => {
+    const stripe = await stripePromise;
+
+    const response = await stripe.redirectToCheckout({
+      mode: 'subscription',
+      lineItems: [
+        {
+          price: 'price_1QV5CmSHHOgVaSBAPrIUBnPn',
+          quantity: 1,
+        },
+      ],
+      successUrl: `${window.location.origin}/success`,
+      cancelUrl: `${window.location.origin}/cancel`,
+    });
+
+    if (response.error) {
+      console.error(response.error.message);
+    }
+  };
+
   return (
     <div className="container px-[4rem] mt-[3rem] mx-auto">
       <div className="flex flex-wrap gap-8">
-
-        {/* Cart Items Section */}
         <div className="flex-1 p-4 bg-white border rounded-lg">
           <h2 className="mb-6 text-2xl font-bold">Shopping Cart</h2>
           <table className="w-full text-left">
@@ -83,8 +102,6 @@ const CartPage = () => {
             <button className="px-4 py-2 text-white bg-gray-800 rounded">Update Cart</button>
           </div>
         </div>
-
-        {/* Cart Summary Section */}
         <div className="w-full max-w-sm p-6 bg-white border rounded-lg">
           <h2 className="mb-4 text-xl font-bold">Cart Total</h2>
           <div className="py-2 border-b">
@@ -101,13 +118,14 @@ const CartPage = () => {
             <span>Total:</span>
             <span>${totalAmount.toFixed(2)}</span>
           </div>
-          <button className="w-full py-3 mt-4 text-white bg-red-500 rounded-lg">
+          <button
+            className="w-full py-3 mt-4 text-white bg-red-500 rounded-lg"
+            onClick={handleCheckout}
+          >
             Proceed to Checkout
           </button>
         </div>
       </div>
-
-      {/* Coupon Section */}
       <div className="flex gap-4 mt-8">
         <input
           type="text"
