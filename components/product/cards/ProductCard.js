@@ -34,7 +34,6 @@ export const ProductCardSkelton = () => {
 }
 
 const ProductCard = ({ product }) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter()
   const wishlistItems = useSelector(state => state.wishlist.items);
@@ -60,15 +59,13 @@ const ProductCard = ({ product }) => {
     <div className="relative  bg-white border rounded-lg p-[1rem] w-[17rem] h-[18rem] flex flex-col group  ">
 
       <div className="relative flex items-center w-full h-[11rem] justify-center  ">
-        {!imageLoaded && <ShimmerThumbnail width={240} height={192} />}
         <Image
           src={product.image}
           alt={product.name}
           width={400}
           height={400}
-          onLoadingComplete={() => setImageLoaded(true)}
           onClick={() => router.push(`/product/${product.id}`)}
-          className={`${imageLoaded ? 'opacity-100' : 'opacity-0'} w-[8rem] h-full cursor-pointer   object-contain `}
+          className={` w-[8rem] h-full cursor-pointer   object-contain `}
         />
         <div onClick={handleToggleWishlist} className=' text-[1.5rem] absolute right-[-.5rem] top-0 cursor-pointer  ' >
 

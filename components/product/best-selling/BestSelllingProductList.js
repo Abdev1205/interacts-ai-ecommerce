@@ -13,7 +13,7 @@ const BestSelllingProductList = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const res = await api.get('/products?limit=8');
+      const res = await api.get('/products');
       setBestProducts(res.data);
       console.log(res.data);
     } catch (error) {
